@@ -1,0 +1,139 @@
+@charset "UTF-8";
+.mtmbdiv div {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.selbtn {
+  background-color: #A776AD;
+  width: 30%;
+  transition: all 0.5s;
+  cursor: pointer;
+  display: inline-block;
+}
+.selbtn span {
+  cursor: pointer;
+  position: relative;
+  transition: 0.5s;
+}
+.selbtn span:after {
+  content: "⇩";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.selbtn:hover span {
+  padding-right: 25px;
+}
+.selbtn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.gobtn {
+  background-color: #f4511e;
+  width: 30%;
+  transition: all 0.5s;
+  cursor: pointer;
+  display: inline-block;
+}
+.gobtn span {
+  cursor: pointer;
+  position: relative;
+  transition: 0.5s;
+}
+.gobtn span:after {
+  content: "✗";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.gobtn:hover span {
+  padding-right: 25px;
+}
+.gobtn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.backbtn {
+  background-color: #3F20F1;
+  width: 30%;
+  transition: all 0.5s;
+  cursor: pointer;
+  display: inline-block;
+}
+.backbtn span {
+  cursor: pointer;
+  position: relative;
+  transition: 0.5s;
+}
+.backbtn span:after {
+  content: "↩";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.backbtn:hover span {
+  padding-right: 25px;
+}
+.backbtn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.butt {
+  background-color: #3E5151;
+  background: linear-gradient(to left, #DECBA4, #3E5151);
+  font-family: Micrsoft JhengHei;
+  font-weight: 900;
+  color: #fff;
+  border: none;
+}
+
+.finbut {
+  background-color: #FC5C7D;
+  background: linear-gradient(to right, #6A82FB, #FC5C7D);
+  font-family: Micrsoft JhengHei;
+  font-weight: 900;
+  color: #fff;
+  border: none;
+}
+
+.dark_panel {
+  background-color: #555;
+  border: 1px solid #666;
+  cursor: pointer;
+  box-shadow: 5px 10px 10px #888;
+}
+
+.green_circle {
+  border: 1px solid #111;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999rem;
+  margin-left: 2vh;
+  color: #00F325;
+}
+
+.dark_alert {
+  box-shadow: 5px 10px 10px #888;
+  border: 1px solid #666;
+}
+.dark_alert span {
+  color: #41AD2E;
+  margin-right: 1vh;
+}
+
+.message_panel {
+  margin-bottom: 3vh;
+  margin-top: 3vh;
+  border: 1px solid #666;
+  box-shadow: 5px 10px 10px #888;
+}

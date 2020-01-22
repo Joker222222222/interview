@@ -1,0 +1,67 @@
+@mixin btn($bgcolor,$content)
+  background-color: $bgcolor
+  width: 30%
+  transition: all 0.5s
+  cursor: pointer
+  display: inline-block
+  span
+    cursor: pointer
+    position: relative
+    transition: 0.5s
+    &:after
+      content: $content
+      position: absolute
+      opacity: 0
+      top: 0
+      right: -20px
+      transition: 0.5s
+  &:hover
+    span
+      padding-right: 25px
+      &:after
+        opacity: 1
+        right: 0
+@mixin linearbtn($bgcolor,$direction,$linear-bg1,$linear-bg2)
+  background-color: $bgcolor
+  background: linear-gradient(to $direction,$linear-bg1,$linear-bg2)
+  font-family: Micrsoft JhengHei
+  font-weight: 900
+  color: #fff
+  border: none
+.mtmbdiv
+  div
+    margin-top: 1rem
+    margin-bottom: 1rem
+.selbtn
+  +btn(#A776AD,'⇩')
+.gobtn
+  +btn(#f4511e,'✗')
+.backbtn
+  +btn(#3F20F1,'↩')
+.butt
+  +linearbtn(#3E5151, left, #DECBA4, #3E5151)
+.finbut
+  +linearbtn(#FC5C7D, right, #6A82FB, #FC5C7D)
+.dark_panel
+  background-color: #555
+  border: 1px solid #666
+  cursor: pointer
+  box-shadow: 5px 10px 10px #888
+.green_circle
+  border: 1px solid #111
+  width: 2rem
+  height: 2rem
+  border-radius: 999rem
+  margin-left: 2vh
+  color: #00F325
+.dark_alert
+  box-shadow: 5px 10px 10px #888
+  border: 1px solid #666
+  span
+    color: #41AD2E
+    margin-right: 1vh
+.message_panel
+  margin-bottom: 3vh
+  margin-top: 3vh
+  border: 1px solid #666
+  box-shadow: 5px 10px 10px #888

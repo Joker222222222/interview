@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "奕智博";
+}
+<h1>面試測驗</h1>
+
+<link rel="stylesheet" href="~/css/Index/Index.css">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<div class="content" id="target">
+    <div class="form-horizontal row" style="margin-top:5vh;margin-bottom:1vh;">
+        <label style="margin-left:3vh;" class="col-sm-4 control-label">面試者姓名 :</label>
+        <div class="col-sm-3">
+            <input type="text" v-model="accountName" v-on="login" class="form-control input" name="accountName">
+        </div>
+        <div class="col-sm-4" v-show="is_testbtn">
+            <button type="button" class="btn" style="width:50%;" v-on:click="start">開始測驗</button>
+        </div>
+    </div>
+    <div class="form-horizontal row" style="margin-top:1vh;margin-bottom:5vh;" v-show="is_pw_show">
+        <label style="margin-left:3vh;" class="col-sm-4 control-label">密碼 :</label>
+        <div class="col-sm-3">
+            <input type="password" v-model="password" class="form-control input" name="password">
+        </div>
+        <div class="col-sm-4">
+            <button type="button" class="btn" style="width:50%;" v-on:click="login">登入</button>
+        </div>
+    </div>
+</div>
+<script>
+    var vue = new Vue({
+        el: "#target",
+        data: {
+            accountName: '',
+            is_pw_show: false,
+            is_testbtn: true,
+            password: '',
+        },
+        methods: {
+            start: function (ctx) {
+                var name = this.accountName;
+                if (name == '' || name == null) {
+                    alert("請輸入姓名");
+                } else if (name == 'admin') {
+                    if (localStorage.getItem('name') != 'admin') {
+                        console.log(localStorage.getItem('name'))
+                        if (this.accountName == 'admin') {
+                            this.is_pw_show = true;
+                            this.is_testbtn = false;
+                        } else {
+                            this.is_pw_show = false;
+                            this.is_testbtn = true;
+                        }
+                    } else {
+                        alert('已登入');
+                        window.location = '/home';
+                    }
+                } else {
+                    localStorage.setItem('istest', 'true');
+                    this.accountName = '';
+                    console.log(localStorage.getItem('istest'));
+                    window.location = '/home/testpage1?userid=' + name;
+                }
+            },
+            login: function (ctx) {
+                var pw = this.password,
+                    name = this.accountName;
+                if (name == 'admin' && pw == '123456') {
+                    localStorage.setItem('name', 'admin');
+                    window.location = '/home/Background'
+                    alert('登入成功');
+                } else {
+                    alert("密碼錯誤，請重新登入");
+                    window.location = '/home'
+                }
+            }
+        }
+    });
+
+</script>

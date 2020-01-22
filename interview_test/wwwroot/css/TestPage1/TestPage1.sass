@@ -1,0 +1,18 @@
+
+@mixin linearbtn($bgcolor,$direction,$linear-bg1,$linear-bg2)
+  background-color: $bgcolor
+  background: linear-gradient(to $direction,$linear-bg1,$linear-bg2)
+  font-family: Micrsoft JhengHei
+  font-weight: 900
+  color: #fff
+  border: none
+*
+  color: #fff
+.finbut
+  +linearbtn(#FC5C7D,right,#6A82FB,#FC5C7D)
+.butt
+  +linearbtn(#3E5151,left,#DECBA4,#3E5151)
+.dark_panel
+  margin: 3vh 0
+  border: 1px solid #CCCCCC
+  box-shadow: 10px 10px 5px #888888

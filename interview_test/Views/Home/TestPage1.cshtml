@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "奕智博";
+}
+<h1>面試題目</h1>
+<hr>
+<link rel="stylesheet" href="~/css/TestPage1/TestPage1.css">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<div class="content" id="target">
+    <div id="choice">
+        <div><h1 style="color:red;">請勿離開視窗，否則會自動交卷!!</h1></div>
+        <div class="dark_panel" v-for="(item,i) in data" v-if="item.type == 1">
+            <div style="padding:5px 10px;">
+                <h4>第{{i+1}}題</h4>
+                <pre style="margin-top:25px;background-color: #000;color:#fff;">{{item.topic}}</pre>
+            </div>
+            <div style="padding:25px 20px">
+                <label><input type="radio" v-model="testanswer[i]" :name="addtestanswer(i)" value="A" > A.{{item.a}}</label><br>
+                <label><input type="radio" v-model="testanswer[i]" :name="addtestanswer(i)" value="B" > B.{{item.b}}</label><br>
+                <label><input type="radio" v-model="testanswer[i]" :name="addtestanswer(i)" value="C" > C.{{item.c}}</label><br>
+                <label><input type="radio" v-model="testanswer[i]" :name="addtestanswer(i)" value="D" > D.{{item.d}}</label>
+            </div>
+        </div>
+        {{message}}
+        <button class="btn butt" style="margin-left:25vh;" v-on:click="next">下一頁</button>
+    </div>
+    <div id="short" style="display:none">
+        <div class="dark_panel" v-for="item,i in data" v-if="item.type == 2">
+            <div style="padding:5px 10px;">
+                <h4>第{{i+1}}題</h4>
+                <pre style="margin-top:25px;background-color: #000;color:#fff;">{{item.topic}}</pre>
+            </div>
+            <div style="padding:25px 20px">
+                <textarea rows="8" style="width:100%;background-color:#444;" v-model="testanswer[i]" v-on:change="replace(testanswer[i],i)"></textarea>
+            </div>
+        </div>
+        {{message}}
+        <button class="btn butt" style="width:40%;margin-left:8vh;margin-right:5vh;" v-on:click="previous">上一頁</button>
+        <button class="btn finbut" style="width:40%;" v-on:click="completely">作答完成</button>
+    </div>
+</div>
+<script>
+    var SetMinute = 0;
+    function Check_Time() {
+        SetMinute += 1;
+        var Check_i = document.getElementById("Check_i");
+
+        var Cal_Minute = Math.floor(Math.floor(SetMinute % 3600) / 60);
+        var Cal_Second = SetMinute % 60;
+
+        Check_i.innerHTML = Cal_Minute + "分" + Cal_Second + "秒";
+    }
+    var settimer = window.setInterval("Check_Time()", 1000);
+
+    var vue = new Vue({
+        el: "#target",
+        data: {
+            message: '',
+            data: '',
+            s: '0',
+            testanswer: []
+        },
+        methods: {
+            replace: function (ctx,i) {
+                var str = ctx;
+                this.testanswer[i] = str.replace(/,/g, "，")
+            },
+            next: function (ctx) {
+                $('#choice').hide();
+                $('#short').show();
+                $('html,body').animate({ scrollTop: 0 }, 'slow');
+            },
+            previous: function (ctx) {
+                $('#choice').show();
+                $('#short').hide();
+                $('html,body').animate({ scrollTop: 0 }, 'slow');
+            },
+        completely: function (ctx) {
+                var name = decodeURIComponent(window.location.search.substring(8));
+                var json = { NAME: name, ANSWER: this.testanswer.join(), TESTTIME: SetMinute };
+                console.log(json.ANSWER.split(","));
+                $.ajax({
+                    url: '/api/InterviewTest',
+                    type: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify(json),
+                    context: this,
+                    dataType: 'json'
+                })
+                    .done(function (data) {
+
+                    })
+                    .fail(function (xhr, status) {
+
+                    });
+                    clearInterval(settimer);
+                    localStorage.removeItem('istest');
+                    window.location = '/home/finishpage';
+            },
+            _loadData: function () {
+                this.message = '載入中請稍等';
+                $.ajax({
+                    url: '/api/InterviewTest',
+                    type: 'GET',
+                    context: this,
+                    dataType: 'json'
+                }).done(function (data) {
+                    if (data == '') {
+                        this.message = '資料出錯' + data.error;
+                    } else {
+                        this.data = data;
+                        this.message = '';
+                    }
+                }).fail(function (xhr, status) {
+                    this.message = '加载有誤:' + status;
+                });
+            },
+            addtestanswer: function (num) {
+                return "{{testanswer." + num + "}}";
+            }
+        },
+        mounted: function () {
+            this._loadData()
+        }
+    });
+    window.onblur = function () {
+        vue.completely();
+    };
+</script>
+

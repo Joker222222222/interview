@@ -1,0 +1,27 @@
+* {
+  color: #fff;
+}
+
+.finbut {
+  background-color: #FC5C7D;
+  background: linear-gradient(to right, #6A82FB, #FC5C7D);
+  font-family: Micrsoft JhengHei;
+  font-weight: 900;
+  color: #fff;
+  border: none;
+}
+
+.butt {
+  background-color: #3E5151;
+  background: linear-gradient(to left, #DECBA4, #3E5151);
+  font-family: Micrsoft JhengHei;
+  font-weight: 900;
+  color: #fff;
+  border: none;
+}
+
+.dark_panel {
+  margin: 3vh 0;
+  border: 1px solid #CCCCCC;
+  box-shadow: 10px 10px 5px #888888;
+}

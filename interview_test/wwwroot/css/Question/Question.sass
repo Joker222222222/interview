@@ -1,0 +1,66 @@
+@mixin linearbtn($bgcolor,$direction,$bg1,$bg2)
+  background: $bgcolor
+  background: linear-gradient(to $direction,$bg1,$bg2)
+  width: 20%
+  margin-right: 10vh
+  border: none
+a
+  color: #999
+  &:hover
+    color: #fff
+tbody
+  tr
+    &:hover
+      background-color: #111
+      cursor: pointer
+.fobtn
+  background-color: #B55726
+  width: 10vh
+.newbtn
+  +linearbtn(#085078,right,#85D8CE,#085078)
+.selbtn
+  +linearbtn(#4776E6,right,#8E54E9,#4776E6)
+.mtmbdiv
+  div
+    margin-top: 1rem
+    margin-bottom: 1rem
+input[type=checkbox]
+  appearance: none
+  outline: none
+  width: 3vh
+  height: 3vh
+  cursor: pointer
+  vertical-align: center
+  background: #999
+  border: 1px solid #ccc
+  position: relative
+  &:checked
+    &::after
+      content: '✔'
+      display: block
+      position: absolute
+      top: -1px
+      left: -1px
+      right: 0
+      bottom: 0
+      width: 3vh
+      height: 3vh
+      line-height: 10px
+      border: 1px solid #ddd
+      color: #fff
+      background-color: #666
+      font-size: 4vh
+.dark_panel
+  background-color: #555
+  border: 1px solid #666
+  box-shadow: 5px 10px 10px #888
+.green_circle
+  border: 1px solid #111
+  width: 2rem
+  height: 2rem
+  border-radius: 999rem
+  margin-left: 20vh
+  color: #00F325
+.dark_alert
+  border: 1px solid #666
+  box-shadow: 5px 10px 10px #888

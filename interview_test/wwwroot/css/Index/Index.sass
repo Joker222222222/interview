@@ -1,0 +1,41 @@
+@mixin BtnAction($translate,$rotate)
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 1
+  background-color: rgba(0,0,0,0.25)
+  transition: all 0.3s
+  transform: translate($translate,-190%) rotate($rotate)
+  transition-timing-function: cubic-bezier(0.75,0,0.125,1)
+%bgCo
+  background-color: #444
+  color: #fff
+*
+  color: #fff
+  font-family: Microsfot JhengHei
+#target
+  margin-top: 5vh
+  margin-bottom: 5vh
+  border: 1px solid #888
+  box-shadow: 5px 10px 10px #777
+  background-color: #555
+.btn
+  color: #fff
+  transition: all 0.3s
+  position: relative
+  border: 1px solid rgba(255,255,255,0.5)
+  overflow: hidden
+  background-color: #956B9B
+  &:before
+    +BtnAction(35%,30deg)
+    transition-delay: 0.2s
+  &:after
+    +BtnAction(-35%,-30deg)
+  &:hover
+    &:before, &:after
+      transform: translate(0,0)
+.input
+  @extend %bgCo
