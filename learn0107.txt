@@ -1,0 +1,56 @@
+文件
+  文件命名標示清楚
+  文件目錄統一
+  文件名不要過長
+
+路由
+  路由相關的放一起
+
+Icon
+  盡量使用icon不要用png圖片
+    減少http請求及項目體積
+    樣式容易控制
+    用戶體驗好
+
+vue組件
+  盡量完整性
+  Boolean類型前面加個is
+  created()後要進行銷毀(beforeDestroy())
+  不要直接操作異步請求(axios)
+
+JavaScript
+  語義化命名
+  加注釋
+  不要重複使用var
+  遇到){中間空一格) {
+  非空判斷問題 (!userId)
+  對象聲明問題
+    var arr = new Array() --> let arr = [] //數組
+    var obj = new object() --> let obj = {} or null //對象
+  取值過長且多次使用 賦一個變數
+  id和class命名要語義化
+
+CSS
+  .selector {需空一格
+  加上注釋
+  嵌套太多層級會影響性能(盡量在三層以下)
+
+RESTful
+  網路架構風格
+  分成
+    GET POST PUT DELETE
+  簡潔的資源URL 善用HTTP Verb 資料類型JSON XML YAML
+  優點
+    瀏覽器可作為client端
+    高效利用cache來達到更快回應
+    介面與資料分離
+    節省伺服器計算資源
+    可重用 web/android/ios皆可
+  要求
+    client-server架構
+    分層系統
+    server-side:GET資源，資源沒被變更，可利用cache機制減少query並加快回應
+    省機器運算及流量 = 省錢
+    通訊協定具有無狀態姓
+    不能讓兩隻API做同個動作
+    統一介面
